@@ -1,0 +1,17 @@
+[package]
+name = "src20_sdk"
+version = "0.0.1"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+fuels = { version = "0.43.0", features = ["fuel-core-lib"] }
+
+[dev-dependencies]
+tokio = { version = "1.12", features = ["rt", "macros"] }
+
+[[test]]
+harness = true
+name = "tests"
+path = "tests/harness.rs"
