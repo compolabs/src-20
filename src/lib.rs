@@ -63,11 +63,3 @@ pub mod token_abi_calls {
             .await
     }
 }
-
-// #[cfg(test)]
-// mod tests {
-//     use super::*;
-
-//     #[test]
-//     fn it_works() {}
-// }
