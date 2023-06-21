@@ -1,3 +1,6 @@
-/target
+*target
 /Cargo.lock
-.idea
+*.idea
+*.bin
+*storage_slots.json
+*.DS_Store

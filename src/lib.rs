@@ -6,7 +6,7 @@ use fuels::{
 
 abigen!(Contract(
     name = "TokenContract",
-    abi = "contract/abi/FRC20-abi.json"
+    abi = "contract/out/debug/FRC20-abi.json"
 ));
 pub struct DeployTokenConfig {
     pub name: String,
