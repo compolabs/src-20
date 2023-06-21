@@ -4,6 +4,7 @@ use std::address::Address;
 use std::constants::ZERO_B256;
 use std::token::mint_to_address;
 use std::bytes::Bytes;
+
 configurable {
     DECIMALS: u8 = 9,
     NAME: str[32] =  "                                ",
