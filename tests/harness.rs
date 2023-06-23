@@ -29,5 +29,5 @@ async fn main_test() {
         .unwrap();
 
     //check if mint is ok
-    // assert!(alice.get_asset_balance(&asset_id).await.unwrap() == mint_amount);
+    assert!(alice.get_asset_balance(&asset_id).await.unwrap() == mint_amount);
 }

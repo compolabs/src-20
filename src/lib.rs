@@ -30,8 +30,8 @@ pub async fn deploy_token_contract(
     let configurables = TokenContractConfigurables::new()
         .set_DECIMALS(deploy_config.decimals)
         .set_NAME(name)
-        .set_SYMBOL(symbol);
-        // .set_OWNER(wallet.address().into());
+        .set_SYMBOL(symbol)
+        .set_OWNER(wallet.address().into());
 
     let config = LoadConfiguration::default().set_configurables(configurables);
     let id = Contract::load_from(bin_path, config)
