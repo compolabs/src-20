@@ -9,7 +9,7 @@ description = "Sway token standard SRC-20 rust sdk"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-fuels = { version = "0.43.0", features = ["fuel-core-lib"] }
+fuels = { git = "https://github.com/FuelLabs/fuels-rs.git", branch = "hotfix/v0.41.0-predicate-configurables" }
 
 [dev-dependencies]
 tokio = { version = "1.12", features = ["rt", "macros"] }

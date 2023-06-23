@@ -87,7 +87,14 @@
         "type": 6,
         "typeArguments": null
       },
-      "attributes": null
+      "attributes": [
+        {
+          "name": "storage",
+          "arguments": [
+            "read"
+          ]
+        }
+      ]
     },
     {
       "inputs": [],
@@ -108,23 +115,6 @@
         "typeArguments": null
       },
       "attributes": null
-    },
-    {
-      "inputs": [],
-      "name": "total_supply",
-      "output": {
-        "name": "",
-        "type": 5,
-        "typeArguments": null
-      },
-      "attributes": [
-        {
-          "name": "storage",
-          "arguments": [
-            "read"
-          ]
-        }
-      ]
     }
   ],
   "loggedTypes": [],
@@ -137,7 +127,7 @@
         "type": 6,
         "typeArguments": null
       },
-      "offset": 3352
+      "offset": 1124
     },
     {
       "name": "NAME",
@@ -146,7 +136,7 @@
         "type": 2,
         "typeArguments": null
       },
-      "offset": 3360
+      "offset": 1132
     },
     {
       "name": "SYMBOL",
@@ -155,16 +145,7 @@
         "type": 3,
         "typeArguments": null
       },
-      "offset": 3392
-    },
-    {
-      "name": "OWNER",
-      "configurableType": {
-        "name": "",
-        "type": 4,
-        "typeArguments": []
-      },
-      "offset": 3264
+      "offset": 1164
     }
   ]
 }

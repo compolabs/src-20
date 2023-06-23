@@ -13,13 +13,13 @@ configurable {
     MINT_AMOUNT: u64 = 0, 
 }
 
-storage {
-    total_supply: u64 = 0u64,
-}
+// storage {
+//     total_supply: u64 = 0u64,
+// }
 
 abi FRC20 {
     #[storage(read)]
-    fn total_supply() -> u64;
+    // fn total_supply() -> u64;
     fn decimals() -> u8;
     fn name() -> str[32];
     fn symbol() -> str[8];
@@ -30,9 +30,9 @@ abi FRC20 {
 
 impl FRC20 for Contract {
     #[storage(read)]
-    fn total_supply() -> u64 {
-        storage.total_supply.read()
-    }
+    // fn total_supply() -> u64 {
+    //     storage.total_supply.read()
+    // }
     fn decimals() -> u8 {
         DECIMALS
     }
@@ -45,8 +45,8 @@ impl FRC20 for Contract {
 
     #[storage(read, write)]
     fn _mint(amount: u64, recipient: Address){
-        assert(msg_sender().unwrap() == Identity::Address(OWNER));
-        storage.total_supply.write(storage.total_supply.try_read().unwrap_or(0) + 1);
+        // assert(msg_sender().unwrap() == Identity::Address(OWNER));
+        // storage.total_supply.write(storage.total_supply.try_read().unwrap_or(0) + 1);
         mint_to_address(amount, recipient);
     }
 }

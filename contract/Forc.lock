@@ -1,0 +1,21 @@
+[[package]]
+name = 'FRC20'
+source = 'member'
+dependencies = [
+    'std',
+    'string',
+]
+
+[[package]]
+name = 'core'
+source = 'path+from-root-D62A8C57DD8D2801'
+
+[[package]]
+name = 'std'
+source = 'git+https://github.com/fuellabs/sway?tag=v0.40.1#48104d0bde0d343154a5bc39a310092532883235'
+dependencies = ['core']
+
+[[package]]
+name = 'string'
+source = 'git+https://github.com/FuelLabs/sway-libs?default-branch#719a86874b81b500b630a349ac0dd5da625b2fe9'
+dependencies = ['std']
