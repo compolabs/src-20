@@ -36,7 +36,7 @@ pub async fn deploy_token_contract(
     let config = LoadConfiguration::default().set_configurables(configurables);
     let id = Contract::load_from(bin_path, config)
         .unwrap()
-        .deploy(wallet, TxParameters::default())
+        .deploy(wallet, TxParameters::default().set_gas_price(1))
         .await
         .unwrap();
 
