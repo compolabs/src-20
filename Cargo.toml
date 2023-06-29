@@ -1,6 +1,6 @@
 [package]
 name = "src20_sdk"
-version = "0.0.2"
+version = "0.0.3"
 edition = "2021"
 authors = ["alexey <alexnagornnyy.an@gmail.com>"]
 license = "Apache-2.0"
@@ -9,7 +9,8 @@ description = "Sway token standard SRC-20 rust sdk"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-fuels = { version = "0.43.0", features = ["fuel-core-lib"] }
+dotenv = "0.15.0"
+fuels = { version = "0.41.1", features = ["fuel-core-lib"] }
 
 [dev-dependencies]
 tokio = { version = "1.12", features = ["rt", "macros"] }

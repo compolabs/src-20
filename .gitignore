@@ -4,3 +4,4 @@
 *.bin
 *storage_slots.json
 *.DS_Store
+.env
