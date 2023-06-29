@@ -1,6 +1,6 @@
 [package]
 name = "src20_sdk"
-version = "0.0.2"
+version = "0.0.3"
 edition = "2021"
 authors = ["alexey <alexnagornnyy.an@gmail.com>"]
 license = "Apache-2.0"
@@ -10,7 +10,7 @@ description = "Sway token standard SRC-20 rust sdk"
 
 [dependencies]
 dotenv = "0.15.0"
-fuels = { git = "https://github.com/FuelLabs/fuels-rs.git", branch = "hotfix/v0.41.0-predicate-configurables" }
+fuels = { version = "0.41.1", features = ["fuel-core-lib"] }
 
 [dev-dependencies]
 tokio = { version = "1.12", features = ["rt", "macros"] }
