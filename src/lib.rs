@@ -1,7 +1,6 @@
 use fuels::{
-    accounts::wallet::WalletUnlocked,
     prelude::{abigen, Contract, LoadConfiguration, TxParameters},
-    types::SizedAsciiString,
+    types::SizedAsciiString, accounts::wallet::WalletUnlocked,
 };
 
 abigen!(Contract(
