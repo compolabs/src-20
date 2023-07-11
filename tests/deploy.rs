@@ -1,6 +1,6 @@
 use dotenv::dotenv;
-use fuels::prelude::{Provider, WalletUnlocked};
-use src20_sdk::{DeployTokenConfig, deploy_token_contract};
+use fuels::{prelude::Provider, accounts::wallet::WalletUnlocked};
+use src20_sdk::{deploy_token_contract, DeployTokenConfig};
 const RPC: &str = "beta-3.fuel.network";
 #[tokio::test]
 async fn deploy() {
@@ -9,7 +9,7 @@ async fn deploy() {
     let secret = std::env::var("ADMIN").unwrap();
     let wallet =
         WalletUnlocked::new_from_private_key(secret.parse().unwrap(), Some(provider.clone()));
-
+    
     let configs: Vec<DeployTokenConfig> = vec![
         DeployTokenConfig {
             name: String::from("Bitcoin"),
