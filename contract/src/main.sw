@@ -1,5 +1,5 @@
 contract;
-use string::String;
+// use string::String;
 use std::address::Address;
 use std::constants::ZERO_B256;
 use std::token::mint_to_address;

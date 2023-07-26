@@ -3,11 +3,14 @@ use fuels::{
     prelude::{abigen, Contract, LoadConfiguration, TxParameters},
     types::SizedAsciiString,
 };
+use serde::{Deserialize, Serialize};
 
 abigen!(Contract(
     name = "TokenContract",
     abi = "contract/out/debug/FRC20-abi.json"
 ));
+
+#[derive(Serialize, Deserialize)]
 pub struct DeployTokenConfig {
     pub name: String,
     pub symbol: String,
@@ -45,7 +48,7 @@ pub async fn deploy_token_contract(
 
 pub mod token_abi_calls {
 
-    use fuels::{programs::call_response::FuelCallResponse, types::Address};
+    use fuels::{programs::call_response::FuelCallResponse, types::Address, prelude::TxDependencyExtension};
 
     use super::*;
 
