@@ -1,5 +1,5 @@
 library;
-use string::String;
+// use string::String;
 
 abi FRC20 {
     #[storage(read)]

@@ -45,7 +45,7 @@ pub async fn deploy_token_contract(
 
 pub mod token_abi_calls {
 
-    use fuels::{programs::call_response::FuelCallResponse, types::Address};
+    use fuels::{programs::call_response::FuelCallResponse, types::Address, prelude::TxDependencyExtension};
 
     use super::*;
 
