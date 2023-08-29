@@ -1,10 +1,12 @@
 use fuels::accounts::fuel_crypto::coins_bip32::prelude::k256::sha2::{Digest, Sha256};
+use fuels::accounts::fuel_crypto::rand::rngs::StdRng;
+use fuels::accounts::fuel_crypto::rand::Rng;
+use fuels::accounts::fuel_crypto::rand::SeedableRng;
 use fuels::types::{AssetId, Bits256};
 use fuels::{
     accounts::wallet::WalletUnlocked,
     prelude::{abigen, Contract, LoadConfiguration, TxParameters},
 };
-
 abigen!(Contract(
     name = "TokenFactoryContract",
     abi = "contract/out/debug/token-factory-abi.json"
@@ -21,11 +23,17 @@ pub async fn deploy_token_factory_contract(
     wallet: &WalletUnlocked,
     bin_path: &str,
 ) -> TokenFactoryContract<WalletUnlocked> {
+    let tx_params = TxParameters::default()
+        .set_gas_price(1)
+        .set_gas_limit(10_000_000);
     // let configurables = TokenFactoryContractConfigurables::new();
     let config = LoadConfiguration::default(); //.set_configurables(configurables);
+    let rng = &mut StdRng::seed_from_u64(tai64::Tai64::now().0);
+    let salt: [u8; 32] = rng.gen();
     let id = Contract::load_from(bin_path, config)
         .unwrap()
-        .deploy(wallet, TxParameters::default().set_gas_price(1))
+        .with_salt(salt)
+        .deploy(wallet, tx_params)
         .await
         .unwrap();
 
@@ -88,10 +96,13 @@ pub mod token_factory_abi_calls {
         amount: u64,
     ) -> Result<FuelCallResponse<()>, fuels::types::errors::Error> {
         let symbol_hash = get_symbol_hash(symbol);
+        let tx_params = TxParameters::default()
+            .set_gas_price(1)
+            .set_gas_limit(10_000_000);
         factory
             .methods()
             .mint(recipient, symbol_hash, amount)
-            .tx_params(TxParameters::default().set_gas_price(1))
+            .tx_params(tx_params)
             .append_variable_outputs(1)
             .call()
             .await
@@ -108,10 +119,14 @@ pub mod token_factory_abi_calls {
         name.push_str(" ".repeat(32 - name.len()).as_str());
         let name = SizedAsciiString::<32>::new(name.clone()).unwrap();
 
+        let tx_params = TxParameters::default()
+            .set_gas_price(1)
+            .set_gas_limit(10_000_000);
+
         factory
             .methods()
             .deploy(symbol_hash, name, decimals as u8)
-            .tx_params(TxParameters::default().set_gas_price(1))
+            .tx_params(tx_params)
             .append_variable_outputs(1)
             .call()
             .await

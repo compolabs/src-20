@@ -11,6 +11,7 @@ description = "Sway token standard SRC-20 rust sdk"
 [dependencies]
 dotenv = "0.15.0"
 fuels = { version = "0.46.0", features = ["fuel-core-lib"] }
+tai64 = "4.0.0"
 
 [dev-dependencies]
 tokio = { version = "1.12", features = ["rt", "macros"] }

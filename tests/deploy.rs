@@ -10,7 +10,7 @@ use src20_sdk::{
 };
 const RPC: &str = "beta-4.fuel.network";
 
-const FACTORY_ADDRESS: &str = "";
+const FACTORY_ADDRESS: &str = "0xd8c627b9cd9ee42e2c2bd9793b13bc9f8e9aad32e25a99ea574f23c1dd17685a";
 
 #[tokio::test]
 async fn deploy() {
@@ -26,7 +26,7 @@ async fn deploy() {
             symbol: String::from("USDC"),
             decimals: 6,
         },
-            DeployTokenConfig {
+        DeployTokenConfig {
             name: String::from("Chainlink"),
             symbol: String::from("LINK"),
             decimals: 9,
