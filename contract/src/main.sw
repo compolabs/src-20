@@ -6,9 +6,9 @@ use std::bytes::Bytes;
 use std::hash::sha256;
 use std::call_frames::contract_id;
 
-configurable {
-    OWNER: Address = Address::from(ZERO_B256),
-}
+// configurable {
+//     OWNER: Address = Address::from(ZERO_B256),
+// }
 
 storage {
     total_supply: StorageMap<b256, u64> = StorageMap::<b256, u64> {},

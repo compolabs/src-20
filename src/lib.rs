@@ -7,7 +7,7 @@ use fuels::{
 
 abigen!(Contract(
     name = "TokenFactoryContract",
-    abi = "contract/out/debug/FRC20-abi.json"
+    abi = "contract/out/debug/token-factory-abi.json"
 ));
 
 #[derive(Clone)]
@@ -22,10 +22,10 @@ pub async fn deploy_token_factory_contract(
     bin_path: &str,
 ) -> TokenFactoryContract<WalletUnlocked> {
     // let configurables = TokenFactoryContractConfigurables::new();
-    let config = LoadConfiguration::default();//.set_configurables(configurables);
+    let config = LoadConfiguration::default(); //.set_configurables(configurables);
     let id = Contract::load_from(bin_path, config)
         .unwrap()
-        .deploy(wallet, TxParameters::default().set_gas_price(1).set_gas_limit(1000_000_000))
+        .deploy(wallet, TxParameters::default().set_gas_price(1))
         .await
         .unwrap();
 

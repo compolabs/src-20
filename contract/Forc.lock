@@ -1,9 +1,4 @@
 [[package]]
-name = 'FRC20'
-source = 'member'
-dependencies = ['std']
-
-[[package]]
 name = 'core'
 source = 'path+from-root-140ABAC4C486046F'
 
@@ -11,3 +6,8 @@ source = 'path+from-root-140ABAC4C486046F'
 name = 'std'
 source = 'git+https://github.com/fuellabs/sway?tag=v0.44.0#241d30f7cde5cdd1f378eb2bc1daae945f329d0c'
 dependencies = ['core']
+
+[[package]]
+name = 'token-factory'
+source = 'member'
+dependencies = ['std']

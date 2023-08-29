@@ -59,7 +59,7 @@ async fn deploy() {
     ];
 
     let factory = if FACTORY_ADDRESS == "" {
-        let bin_path = "contract/out/debug/FRC20.bin";
+        let bin_path = "contract/out/debug/token-factory.bin";
         let factory = deploy_token_factory_contract(&wallet, bin_path).await;
         println!(
             "The factory has been deployed {}",

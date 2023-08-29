@@ -14,7 +14,7 @@ async fn main_test() {
     let alice = &wallets[1]; //token mint recipient
 
     // factory deploy
-    let bin_path = "contract/out/debug/FRC20.bin";
+    let bin_path = "contract/out/debug/token-factory.bin";
     let factory = deploy_token_factory_contract(&admin, bin_path).await;
     println!(
         "The factory has been deployed {}",
