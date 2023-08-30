@@ -79,6 +79,17 @@ async fn deploy() {
             .await
             .unwrap()
             .value;
-        println!("Deployed {} {}", config.name, AssetId::from(bits256.0));
+        println!("Deployed {}({}) {}", config.name, config.symbol, AssetId::from(bits256.0));
     }
 }
+
+
+/* 
+Deployed USD Coin(USDC) 8bf7951ea3222fe0bae9b811c2b142a1ff417361dcf7457855ed477d2d9a8550
+Deployed Chainlink(LINK) fa36ce38f74ee0bcd12c11ec367ca237cee3e6b7a937761f4f762bbc11d2da21
+Deployed Bitcoin(BTC) 49fab925448594b61c280b5c580b2a63a6f6a8aaa3c199a06798b1c568808158
+Deployed Uniswap(UNI) ae37bc0feb66e60a89e301d450bb4640aa9bd7cedd856e253e23989eae536e92
+Deployed Swaylend(SWAY) a715086b6bb8c944ba370c78e7ca38c35ec5c0f758fb2b57be11fdae23988600
+Deployed Compound(COMP) c23da8f4073523e84e4fdd2b6a28f3273af2b70361345a63307313f0f489c48b
+Deployed Spark(SPARK) 7b0c0ea5886c2699887f63983187a63954d5c41639c6b055894f487810136c03
+*/

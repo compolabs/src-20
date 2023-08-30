@@ -24,8 +24,8 @@ pub async fn deploy_token_factory_contract(
     bin_path: &str,
 ) -> TokenFactoryContract<WalletUnlocked> {
     let tx_params = TxParameters::default()
-        .set_gas_price(1)
-        .set_gas_limit(10_000_000);
+        .with_gas_price(1)
+        .with_gas_limit(10_000_000);
     // let configurables = TokenFactoryContractConfigurables::new();
     let config = LoadConfiguration::default(); //.set_configurables(configurables);
     let rng = &mut StdRng::seed_from_u64(tai64::Tai64::now().0);
@@ -97,8 +97,8 @@ pub mod token_factory_abi_calls {
     ) -> Result<FuelCallResponse<()>, fuels::types::errors::Error> {
         let symbol_hash = get_symbol_hash(symbol);
         let tx_params = TxParameters::default()
-            .set_gas_price(1)
-            .set_gas_limit(10_000_000);
+            .with_gas_price(1)
+            .with_gas_limit(10_000_000);
         factory
             .methods()
             .mint(recipient, symbol_hash, amount)
@@ -120,8 +120,8 @@ pub mod token_factory_abi_calls {
         let name = SizedAsciiString::<32>::new(name.clone()).unwrap();
 
         let tx_params = TxParameters::default()
-            .set_gas_price(1)
-            .set_gas_limit(10_000_000);
+            .with_gas_price(1)
+            .with_gas_limit(10_000_000);
 
         factory
             .methods()
