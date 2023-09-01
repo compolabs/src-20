@@ -79,12 +79,12 @@ async fn deploy() {
             .await
             .unwrap()
             .value;
-        println!("Deployed {}({}) {}", config.name, config.symbol, AssetId::from(bits256.0));
+        let asset_id = AssetId::from(bits256.0);
+        println!("Deployed {}({}) {}", config.name, config.symbol, asset_id);
     }
 }
 
-
-/* 
+/*
 Deployed USD Coin(USDC) 8bf7951ea3222fe0bae9b811c2b142a1ff417361dcf7457855ed477d2d9a8550
 Deployed Chainlink(LINK) fa36ce38f74ee0bcd12c11ec367ca237cee3e6b7a937761f4f762bbc11d2da21
 Deployed Bitcoin(BTC) 49fab925448594b61c280b5c580b2a63a6f6a8aaa3c199a06798b1c568808158
