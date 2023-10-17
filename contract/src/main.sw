@@ -5,6 +5,7 @@ use std::token::mint_to_address;
 use std::bytes::Bytes;
 use std::hash::sha256;
 use std::call_frames::contract_id;
+use std::hash::Hash;
 
 // configurable {
 //     OWNER: Address = Address::from(ZERO_B256),
@@ -43,7 +44,7 @@ enum Errors {
 
 impl TokenFactory for Contract {
     fn asset_id(symbol_hash: b256) -> AssetId {
-        sha256((contract_id(), symbol_hash))
+        AssetId::from(sha256((contract_id(), symbol_hash)))
     }
     #[storage(read)]
     fn total_supply(symbol_hash: b256) -> u64 {

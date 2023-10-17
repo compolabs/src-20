@@ -2,7 +2,7 @@ use fuels::accounts::fuel_crypto::coins_bip32::prelude::k256::sha2::{Digest, Sha
 use fuels::accounts::fuel_crypto::rand::rngs::StdRng;
 use fuels::accounts::fuel_crypto::rand::Rng;
 use fuels::accounts::fuel_crypto::rand::SeedableRng;
-use fuels::types::{AssetId, Bits256};
+use fuels::types::Bits256;
 use fuels::{
     accounts::wallet::WalletUnlocked,
     prelude::{abigen, Contract, LoadConfiguration, TxParameters},
@@ -45,7 +45,7 @@ pub mod token_factory_abi_calls {
     use fuels::{
         prelude::TxDependencyExtension,
         programs::call_response::FuelCallResponse,
-        types::{Address, Bits256, Identity, SizedAsciiString},
+        types::{Address, AssetId, Identity, SizedAsciiString},
     };
 
     use super::*;
@@ -53,7 +53,7 @@ pub mod token_factory_abi_calls {
     pub async fn asset_id(
         factory: &TokenFactoryContract<WalletUnlocked>,
         symbol: &str,
-    ) -> Result<FuelCallResponse<Bits256>, fuels::types::errors::Error> {
+    ) -> Result<FuelCallResponse<AssetId>, fuels::types::errors::Error> {
         let symbol_hash = get_symbol_hash(symbol);
         factory.methods().asset_id(symbol_hash).simulate().await
     }
@@ -137,6 +137,6 @@ fn get_symbol_hash(symbol: &str) -> Bits256 {
     let mut hasher = Sha256::new();
     hasher.update(symbol);
     let symbol_hash: [u8; 32] = hasher.finalize().into();
-    let hash_asset_id = AssetId::from(symbol_hash);
+    let hash_asset_id = fuels::types::AssetId::from(symbol_hash);
     Bits256::from(hash_asset_id)
 }

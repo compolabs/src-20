@@ -10,7 +10,7 @@ use src20_sdk::{
 };
 const RPC: &str = "beta-4.fuel.network";
 
-const FACTORY_ADDRESS: &str = "0xd8c627b9cd9ee42e2c2bd9793b13bc9f8e9aad32e25a99ea574f23c1dd17685a";
+const FACTORY_ADDRESS: &str = "0x8a25657aa845a67fec72a60e59ac01342483e89a5ef9215eb52c4e56270b082f";
 
 #[tokio::test]
 async fn deploy() {
@@ -42,20 +42,10 @@ async fn deploy() {
             decimals: 9,
         },
         DeployTokenConfig {
-            name: String::from("Swaylend"),
-            symbol: String::from("SWAY"),
-            decimals: 9,
-        },
-        DeployTokenConfig {
             name: String::from("Compound"),
             symbol: String::from("COMP"),
             decimals: 9,
-        },
-        DeployTokenConfig {
-            name: String::from("Spark"),
-            symbol: String::from("SPARK"),
-            decimals: 9,
-        },
+        }
     ];
 
     let factory = if FACTORY_ADDRESS == "" {
@@ -79,7 +69,7 @@ async fn deploy() {
             .await
             .unwrap()
             .value;
-        let asset_id = AssetId::from(bits256.0);
+        let asset_id = AssetId::from(bits256);
         println!("Deployed {}({}) {}", config.name, config.symbol, asset_id);
     }
 }
