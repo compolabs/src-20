@@ -1,9 +1,9 @@
 use fuels::{
     prelude::ViewOnlyAccount,
     test_helpers::{launch_custom_provider_and_get_wallets, WalletsConfig},
-    types::{AssetId, ContractId},
+    types::AssetId,
 };
-use src20_sdk::{deploy_token_contract, token_abi_calls, DeployTokenConfig};
+use src20_sdk::{deploy_token_factory_contract, token_factory_abi_calls};
 
 #[tokio::test]
 async fn main_test() {
@@ -13,18 +13,58 @@ async fn main_test() {
     let admin = &wallets[0]; //token owner
     let alice = &wallets[1]; //token mint recipient
 
+    // factory deploy
+    let bin_path = "contract/out/debug/token-factory.bin";
+    let factory = deploy_token_factory_contract(&admin, bin_path).await;
+    // println!(
+    //     "The factory has been deployed {}",
+    //     factory.contract_id().hash
+    // );
+
+    // let is_err = token_factory_abi_calls::name(&factory, "SPARK")
+    //     .await
+    //     .is_err();
+    // assert!(is_err);
+
+    let is_err = token_factory_abi_calls::decimals(&factory, "SPARK")
+        .await
+        .is_err();
+    assert!(is_err);
+
+    let is_err = token_factory_abi_calls::admin(&factory, "SPARK")
+        .await
+        .is_err();
+    assert!(is_err);
+
+    let is_err = token_factory_abi_calls::total_supply(&factory, "SPARK")
+        .await
+        .is_err();
+    assert!(is_err);
+
+    let is_err = token_factory_abi_calls::mint(&factory, alice.address().into(), "SPARK", 1)
+        .await
+        .is_err();
+    assert!(is_err);
+
     //token deploy
-    let token_config = &DeployTokenConfig {
-        name: "Spark Token".to_owned(),
-        symbol: "SPARK".to_owned(),
-        decimals: 9,
-    };
-    let token = deploy_token_contract(admin, token_config, "contract/out/debug/FRC20.bin").await;
-    let asset_id = AssetId::from(*ContractId::from(token.contract_id()));
+    token_factory_abi_calls::deploy(&factory, "SPARK", "Spark Token", 9)
+        .await
+        .unwrap();
+
+    let is_err = token_factory_abi_calls::deploy(&factory, "SPARK", "Spark Token", 9)
+        .await
+        .is_err();
+    assert!(is_err);
+
+    let bits256 = token_factory_abi_calls::asset_id(&factory, "SPARK")
+        .await
+        .unwrap()
+        .value;
+    let asset_id = AssetId::from(bits256);
 
     //mint
     let mint_amount = 1000_000_000_000;
-    token_abi_calls::mint(&token, mint_amount, alice.address().into())
+    token_factory_abi_calls::mint(&factory, alice.address().into(), "SPARK", mint_amount)
         .await
         .unwrap();
 
