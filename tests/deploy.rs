@@ -69,7 +69,7 @@ async fn deploy() {
             .await
             .unwrap()
             .value;
-        let asset_id = AssetId::from(bits256);
+        let asset_id = AssetId::from(bits256.0);
         println!("Deployed {}({}) {}", config.name, config.symbol, asset_id);
     }
 }

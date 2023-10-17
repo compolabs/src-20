@@ -45,7 +45,7 @@ pub mod token_factory_abi_calls {
     use fuels::{
         prelude::TxDependencyExtension,
         programs::call_response::FuelCallResponse,
-        types::{Address, AssetId, Identity, SizedAsciiString},
+        types::{Address, Identity, SizedAsciiString},
     };
 
     use super::*;
@@ -53,7 +53,7 @@ pub mod token_factory_abi_calls {
     pub async fn asset_id(
         factory: &TokenFactoryContract<WalletUnlocked>,
         symbol: &str,
-    ) -> Result<FuelCallResponse<AssetId>, fuels::types::errors::Error> {
+    ) -> Result<FuelCallResponse<Bits256>, fuels::types::errors::Error> {
         let symbol_hash = get_symbol_hash(symbol);
         factory.methods().asset_id(symbol_hash).simulate().await
     }

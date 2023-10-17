@@ -60,7 +60,7 @@ async fn main_test() {
         .await
         .unwrap()
         .value;
-    let asset_id = AssetId::from(bits256);
+    let asset_id = AssetId::from(bits256.0);
 
     //mint
     let mint_amount = 1000_000_000_000;
