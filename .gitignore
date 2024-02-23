@@ -1,6 +1,5 @@
 *target
 /Cargo.lock
 *.idea
-*.bin
 *.DS_Store
 .env
