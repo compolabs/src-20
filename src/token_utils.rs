@@ -1,3 +1,5 @@
+use std::path::PathBuf;
+
 use fuels::accounts::wallet::WalletUnlocked;
 use fuels::prelude::{abigen, Contract, LoadConfiguration, TxPolicies};
 use fuels::programs::call_response::FuelCallResponse;
@@ -52,7 +54,8 @@ impl Asset {
     }
 
     pub fn new(wallet: WalletUnlocked, token_contract_id: ContractId, symbol: &str) -> Self {
-        let tokens_json = std::fs::read_to_string("tokens.json").unwrap();
+        let tokens_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tokens.json");
+        let tokens_json = std::fs::read_to_string(tokens_path).unwrap();
         let token_configs: Vec<TokenConfig> = serde_json::from_str(&tokens_json).unwrap();
         let config = token_configs
             .into_iter()
@@ -76,8 +79,8 @@ pub async fn deploy_token_contract(wallet: &WalletUnlocked) -> TokenContract<Wal
     let salt = rng.gen::<[u8; 32]>();
     let configurables = TokenContractConfigurables::default();
     let config = LoadConfiguration::default().with_configurables(configurables);
-
-    let id = Contract::load_from("contract/out/debug/token.bin", config)
+    let bin_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("contract/out/debug/token.bin");
+    let id = Contract::load_from(bin_path, config)
         .unwrap()
         .with_salt(salt)
         .deploy(wallet, TxPolicies::default().with_gas_price(1))
@@ -91,8 +94,8 @@ pub async fn get_token_contract(wallet: &WalletUnlocked) -> TokenContract<Wallet
     let salt = rng.gen::<[u8; 32]>();
     let configurables = TokenContractConfigurables::default();
     let config = LoadConfiguration::default().with_configurables(configurables);
-
-    let id = Contract::load_from("contract/out/debug/token.bin", config)
+    let bin_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("contract/out/debug/token.bin");
+    let id = Contract::load_from(bin_path, config)
         .unwrap()
         .with_salt(salt)
         .deploy(wallet, TxPolicies::default().with_gas_price(1))
