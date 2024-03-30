@@ -1,6 +1,6 @@
 [[package]]
 name = "asset"
-source = "git+https://github.com/FuelLabs/sway-libs?default-branch#7765aff5ed9cf76c789a95b1fde9ff19462623fd"
+source = "git+https://github.com/FuelLabs/sway-libs?tag=v0.19.0#dcbbec000a9051e71c0c21f4b720eebbb55c199a"
 dependencies = [
     "src7",
     "std",
@@ -8,16 +8,16 @@ dependencies = [
 
 [[package]]
 name = "core"
-source = "path+from-root-B672DC9E3D340CD2"
+source = "path+from-root-566CA1D5F8BEAFBF"
 
 [[package]]
 name = "src20"
-source = "git+https://github.com/FuelLabs/sway-standards?default-branch#ce382b6880185e49156221b386e241d1a40bdc55"
+source = "git+https://github.com/FuelLabs/sway-standards?tag=v0.3.3#4198b4b07449ad16104cc8a0501f3013670fdcfd"
 dependencies = ["std"]
 
 [[package]]
 name = "src3"
-source = "git+https://github.com/FuelLabs/sway-standards?default-branch#ce382b6880185e49156221b386e241d1a40bdc55"
+source = "git+https://github.com/FuelLabs/sway-standards?tag=v0.3.3#4198b4b07449ad16104cc8a0501f3013670fdcfd"
 dependencies = ["std"]
 
 [[package]]
@@ -27,7 +27,7 @@ dependencies = ["std"]
 
 [[package]]
 name = "std"
-source = "git+https://github.com/fuellabs/sway?tag=v0.49.2#a70c746d27b3300beef896ccd1dcce1299836192"
+source = "git+https://github.com/fuellabs/sway?tag=v0.49.3#0dc6570377ee9c4a6359ade597fa27351e02a728"
 dependencies = ["core"]
 
 [[package]]

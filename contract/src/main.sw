@@ -11,7 +11,6 @@ use asset::mint::{_mint, _burn};
 use src20::SRC20;
 use src3::SRC3;
 use std::{hash::{Hash, sha256}, string::String, storage::storage_string::*};
-
 storage {
     total_assets: u64 = 0,
     total_supply: StorageMap<AssetId, u64> = StorageMap {},
