@@ -89,21 +89,6 @@ pub async fn deploy_token_contract(wallet: &WalletUnlocked) -> TokenContract<Wal
     let instance = TokenContract::new(id.clone(), wallet.clone());
     instance
 }
-pub async fn get_token_contract(wallet: &WalletUnlocked) -> TokenContract<WalletUnlocked> {
-    let mut rng = rand::thread_rng();
-    let salt = rng.gen::<[u8; 32]>();
-    let configurables = TokenContractConfigurables::default();
-    let config = LoadConfiguration::default().with_configurables(configurables);
-    let bin_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("contract/out/debug/token.bin");
-    let id = Contract::load_from(bin_path, config)
-        .unwrap()
-        .with_salt(salt)
-        .deploy(wallet, TxPolicies::default().with_gas_price(1))
-        .await
-        .unwrap();
-    let instance = TokenContract::new(id.clone(), wallet.clone());
-    instance
-}
 
 // pub async fn load_tokens(
 //     tokens_json_path: &str,
