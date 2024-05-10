@@ -42,7 +42,7 @@ impl Asset {
             .methods()
             .mint(Identity::Address(recipient), symbol_hash, amount)
             .append_variable_outputs(1)
-            .with_tx_policies(TxPolicies::default().with_gas_price(1))
+            .with_tx_policies(TxPolicies::default().with_tip(1))
             .call()
             .await
     }
@@ -83,7 +83,7 @@ pub async fn deploy_token_contract(wallet: &WalletUnlocked) -> TokenContract<Wal
     let id = Contract::load_from(bin_path, config)
         .unwrap()
         .with_salt(salt)
-        .deploy(wallet, TxPolicies::default().with_gas_price(1))
+        .deploy(wallet, TxPolicies::default().with_tip(1))
         .await
         .unwrap();
     let instance = TokenContract::new(id.clone(), wallet.clone());
