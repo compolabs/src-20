@@ -1,15 +1,15 @@
 contract;
 
-use asset::base::{
+use sway_libs::asset::base::{
     _total_assets, 
     _total_supply,
     _name,
     _symbol,
     _decimals
 };
-use asset::mint::{_mint, _burn};
-use src20::SRC20;
-use src3::SRC3;
+use sway_libs::asset::supply::{_mint, _burn};
+use standards::src20::SRC20;
+use standards::src3::SRC3;
 use std::{hash::{Hash, sha256}, string::String, storage::storage_string::*};
 storage {
     total_assets: u64 = 0,
@@ -52,6 +52,7 @@ impl SRC3 for Contract {
         let _asset_id = _mint(storage.total_assets, storage.total_supply, recipient, sub_id, amount);
     }
 
+    #[payable]
     #[storage(read, write)]
     fn burn(sub_id: SubId, amount: u64) {
         _burn(storage.total_supply, sub_id, amount);

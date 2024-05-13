@@ -26,7 +26,7 @@ pub struct Asset {
     pub asset_id: AssetId,
     pub decimals: u64,
     pub symbol: String,
-    pub token_contract_instance: Option<TokenContract<WalletUnlocked>>,
+    pub token_contract: TokenContract<WalletUnlocked>,
 }
 
 impl Asset {
@@ -36,9 +36,7 @@ impl Asset {
         amount: u64,
     ) -> Result<FuelCallResponse<()>, fuels::types::errors::Error> {
         let symbol_hash = get_symbol_hash(&self.symbol);
-        self.token_contract_instance
-            .as_ref()
-            .unwrap()
+        self.token_contract
             .methods()
             .mint(Identity::Address(recipient), symbol_hash, amount)
             .append_variable_outputs(1)
@@ -69,7 +67,7 @@ impl Asset {
             asset_id,
             decimals: config.decimals,
             symbol: config.symbol,
-            token_contract_instance: Option::Some(instance),
+            token_contract: instance,
         }
     }
 }
