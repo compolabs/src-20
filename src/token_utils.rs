@@ -26,7 +26,7 @@ pub struct Asset {
     pub asset_id: AssetId,
     pub decimals: u64,
     pub symbol: String,
-    pub token_contract_instance: Option<TokenContract<WalletUnlocked>>,
+    pub token_contract: TokenContract<WalletUnlocked>,
 }
 
 impl Asset {
@@ -36,13 +36,11 @@ impl Asset {
         amount: u64,
     ) -> Result<FuelCallResponse<()>, fuels::types::errors::Error> {
         let symbol_hash = get_symbol_hash(&self.symbol);
-        self.token_contract_instance
-            .as_ref()
-            .unwrap()
+        self.token_contract
             .methods()
             .mint(Identity::Address(recipient), symbol_hash, amount)
             .append_variable_outputs(1)
-            .with_tx_policies(TxPolicies::default().with_gas_price(1))
+            .with_tx_policies(TxPolicies::default().with_tip(1))
             .call()
             .await
     }
@@ -69,7 +67,7 @@ impl Asset {
             asset_id,
             decimals: config.decimals,
             symbol: config.symbol,
-            token_contract_instance: Option::Some(instance),
+            token_contract: instance,
         }
     }
 }
@@ -83,7 +81,7 @@ pub async fn deploy_token_contract(wallet: &WalletUnlocked) -> TokenContract<Wal
     let id = Contract::load_from(bin_path, config)
         .unwrap()
         .with_salt(salt)
-        .deploy(wallet, TxPolicies::default().with_gas_price(1))
+        .deploy(wallet, TxPolicies::default().with_tip(1))
         .await
         .unwrap();
     let instance = TokenContract::new(id.clone(), wallet.clone());
