@@ -15,8 +15,8 @@ async fn main_test() {
     let admin = &wallets[0];
     let alice = &wallets[1];
 
-    let token_contarct = deploy_token_contract(&admin).await;
-    let usdc = Asset::new(admin.clone(), token_contarct.contract_id().into(), "USDC");
+    let token_contract = deploy_token_contract(&admin).await;
+    let usdc = Asset::new(admin.clone(), token_contract.contract_id().into(), "USDC");
 
     usdc.mint(alice.address().into(), usdc.parse_units(1000.0) as u64)
         .await
