@@ -1,4 +1,4 @@
-pub const RPC: &str = "devnet.fuel.network";
+pub const RPC: &str = "testnet.fuel.network";
 
 pub const TOKEN_CONTRACT_ID: &str =
-    "0x6bd9643c9279204b474a778dea7f923226060cb94a4c61c5aae015cf96b5aad2";
+    "0xa2def1190ddb0acfe979f4f5e08548edf285c5ff6abe318f02b2af52a0727908";
