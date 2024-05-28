@@ -40,7 +40,7 @@ impl Asset {
             .methods()
             .mint(Identity::Address(recipient), symbol_hash, amount)
             .append_variable_outputs(1)
-            .with_tx_policies(TxPolicies::default().with_tip(1).with_max_fee(1000))
+            .with_tx_policies(TxPolicies::default().with_script_gas_limit(3500000))
             .call()
             .await
     }
