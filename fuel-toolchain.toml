@@ -1,0 +1,5 @@
+[toolchain]
+channel = "nightly-2024-05-27"
+
+[components]
+forc = "0.60.0"

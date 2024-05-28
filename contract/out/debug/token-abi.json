@@ -372,15 +372,7 @@
   ],
   "loggedTypes": [
     {
-      "logId": 0,
-      "loggedType": {
-        "name": "",
-        "type": 2,
-        "typeArguments": []
-      }
-    },
-    {
-      "logId": 1,
+      "logId": "4237256875605624201",
       "loggedType": {
         "name": "",
         "type": 2,
