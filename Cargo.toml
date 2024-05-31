@@ -10,7 +10,7 @@ description = "Sway token standard SRC-20 rust sdk"
 
 [dependencies]
 dotenv = "0.15.0"
-fuels = { version = "0.62.0", features = ["fuel-core-lib"] }
+fuels = { version = "0.63.0", features = ["fuel-core-lib"] }
 rand = "0.8.5"
 serde = "1.0.197"
 serde_json = "1.0.114"
