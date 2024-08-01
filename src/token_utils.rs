@@ -2,8 +2,8 @@ use std::path::PathBuf;
 
 use fuels::accounts::wallet::WalletUnlocked;
 use fuels::prelude::{abigen, Contract, LoadConfiguration, TxPolicies};
-use fuels::programs::call_response::FuelCallResponse;
-use fuels::programs::call_utils::TxDependencyExtension;
+use fuels::programs::responses::CallResponse;
+use fuels::types::transaction_builders::VariableOutputPolicy;
 use fuels::types::{Address, AssetId, Bits256, ContractId, Identity};
 use rand::Rng;
 use serde::Deserialize;
@@ -34,12 +34,12 @@ impl Asset {
         &self,
         recipient: Address,
         amount: u64,
-    ) -> Result<FuelCallResponse<()>, fuels::types::errors::Error> {
+    ) -> Result<CallResponse<()>, fuels::types::errors::Error> {
         let symbol_hash = get_symbol_hash(&self.symbol);
         self.token_contract
             .methods()
             .mint(Identity::Address(recipient), symbol_hash, amount)
-            .append_variable_outputs(1)
+            .with_variable_output_policy(VariableOutputPolicy::Exactly(1))
             .with_tx_policies(TxPolicies::default().with_script_gas_limit(3500000))
             .call()
             .await
